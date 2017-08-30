@@ -23,7 +23,9 @@ namespace ContosoUniversity.Controllers
         public async Task<IActionResult> Index()
         {
             var courses = _context.Courses
-                .Include(c => c.Department)
+            .Include(c => c.Department)
+            .ThenInclude(c => c.Administrator)
+                .OrderBy(c => c.CourseID)
                 .AsNoTracking();
             return View(await courses.ToListAsync());
         }
@@ -38,6 +40,7 @@ namespace ContosoUniversity.Controllers
 
             var course = await _context.Courses
                 .Include(c => c.Department)
+                .ThenInclude(c => c.Administrator)
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
@@ -118,10 +121,13 @@ namespace ContosoUniversity.Controllers
 
         private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
         {
-            var departmentsQuery = from d in _context.Departments
-                                   orderby d.Name
-                                   select d;
-            ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
+            // var departmentsQuery = from d in _context.Departments
+            //                        orderby d.Name
+            //                        select d;
+            //ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
+
+            var departments = _context.Departments.OrderBy(c => c.Name).AsNoTracking();
+            ViewBag.DepartmentID = new SelectList(departments, "DepartmentID", "Name", selectedDepartment);
         }
 
         // GET: Courses/Delete/5

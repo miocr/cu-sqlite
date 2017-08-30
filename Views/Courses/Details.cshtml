@@ -27,6 +27,7 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Department.Name)
+            (@Html.DisplayFor(model => model.Department.Administrator.FullName))
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Title)

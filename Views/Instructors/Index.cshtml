@@ -16,12 +16,12 @@
             <th>First Name</th>
             <th>Hire Date</th>
             <th>Office</th>
-            <th>Courses</th>
+            <th>Courses (Admin)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Instructors)
+        @foreach (Instructor item in Model.Instructors)
         {
             string selectedRow = "";
             if (item.ID == (int?)ViewData["InstructorID"])
@@ -46,9 +46,13 @@
                 </td>
                 <td>
                     @{
-                        foreach (var course in item.Courses)
+                        foreach (CourseAssignment courseAssignment in item.CoursesAssign)
                         {
-                            @course.Course.CourseID @:  @course.Course.Title <br />
+                            <b>@courseAssignment.Course.CourseID</b> @:- @courseAssignment.Course.Title 
+                            @:(
+                               <i>@courseAssignment.Course.Department.Administrator.FullName</i>
+                            @:)
+                            <br />
                         }
                     }
                 </td>

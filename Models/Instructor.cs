@@ -11,8 +11,7 @@ namespace ContosoUniversity.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Hire Date")]
         public DateTime HireDate { get; set; }
-
-        public ICollection<CourseAssignment> Courses { get; set; }
+        public ICollection<CourseAssignment> CoursesAssign { get; set; }
         public OfficeAssignment OfficeAssignment { get; set; }
     }
 }
