@@ -32,4 +32,4 @@ and navigating to `aspnet\data\ef-mvc\intro\samples\cu-final` in your local file
 
 comment in Git2Go
 
-coment from web
+
