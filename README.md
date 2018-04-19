@@ -31,3 +31,5 @@ from GitHub by downloading or cloning the [aspnet/Docs repository](https://githu
 and navigating to `aspnet\data\ef-mvc\intro\samples\cu-final` in your local file system.
 
 comment in Git2Go
+
+coment from web
